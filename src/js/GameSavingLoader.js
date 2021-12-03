@@ -1,10 +1,11 @@
+import GameSaving from './GameSaving';
 import read from './reader';
 import json from './parser';
 
-export default class GameSavingLoader {
+class GameSavingLoader {
   static async load() {
-    const data = await read();
-    const newLocal = await json(data);
-    return newLocal;
+    return new GameSaving(await json(await read()));
   }
 }
+
+export default GameSavingLoader;

@@ -1,9 +1,10 @@
 import GameSavingLoader from './GameSavingLoader';
 
-(async () => {
-  try {
-    console.log(await GameSavingLoader.load());
-  } catch (err) {
-    console.log(err);
-  }
-})();
+GameSavingLoader.load().then((saving) => {
+  // saving объект класса GameSaving
+  Document.getElementsByTagName('body')[0].innerHTML += `
+  ${saving.userInfo.name}
+  `;
+}, (error) => {
+  Document.getElementsByTagName('body')[0].innerHTML += `ERROR: ${error}`;
+});
